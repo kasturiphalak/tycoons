@@ -1,0 +1,249 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.1.38-community MySQL Community Server (GPL)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| app                |
+| aw                 |
+| ayush              |
+| bookapi            |
+| college            |
+| dbase              |
+| dbbase             |
+| dept               |
+| divya              |
+| employee           |
+| etour              |
+| exam               |
+| group16_01         |
+| info               |
+| kavita             |
+| login              |
+| megha              |
+| meghana            |
+| mydata             |
+| mydatabase         |
+| mydb               |
+| mydb1              |
+| mydbase            |
+| mysql              |
+| niharika           |
+| nimmu              |
+| php1               |
+| royal              |
+| sales              |
+| shunaiz            |
+| student            |
+| teju               |
+| test               |
+| ttt                |
+| umesh              |
+| vita               |
+| vita_db            |
++--------------------+
+38 rows in set (0.02 sec)
+
+mysql> create database fooditem;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use database fooditem;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| app                |
+| aw                 |
+| ayush              |
+| bookapi            |
+| college            |
+| dbase              |
+| dbbase             |
+| dept               |
+| divya              |
+| employee           |
+| etour              |
+| exam               |
+| fooditem           |
+| group16_01         |
+| info               |
+| kavita             |
+| login              |
+| megha              |
+| meghana            |
+| mydata             |
+| mydatabase         |
+| mydb               |
+| mydb1              |
+| mydbase            |
+| mysql              |
+| niharika           |
+| nimmu              |
+| php1               |
+| royal              |
+| sales              |
+| shunaiz            |
+| student            |
+| teju               |
+| test               |
+| ttt                |
+| umesh              |
+| vita               |
+| vita_db            |
++--------------------+
+39 rows in set (0.00 sec)
+
+mysql> use fooditem;
+Database changed
+mysql> create table fooditem(
+    -> foodid int,menu varchar(20)
+    -> );
+ERROR 3 (HY000): Error writing file '.\fooditem\fooditem.frm' (Errcode: 28)
+mysql> create table foodmenu(foodid int,menu varchar(20)
+    -> ,price int);
+ERROR 3 (HY000): Error writing file '.\fooditem\foodmenu.frm' (Errcode: 28)
+mysql> drop table teju;
+ERROR 1051 (42S02): Unknown table 'teju'
+mysql> use teju;
+Database changed
+mysql> drop table teju;
+ERROR 1051 (42S02): Unknown table 'teju'
+mysql> drop database teju;
+Query OK, 2 rows affected (0.20 sec)
+
+mysql> drop database umesh;
+Query OK, 1 row affected (0.09 sec)
+
+mysql> drop database vita;
+Query OK, 2 rows affected (0.09 sec)
+
+mysql> drop database student;
+Query OK, 3 rows affected (0.16 sec)
+
+mysql> drop database nimmu
+    -> ;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> drop database sales;
+Query OK, 6 rows affected (0.23 sec)
+
+mysql> drop database kavita;
+Query OK, 3 rows affected (0.16 sec)
+
+mysql> drop database login;
+Query OK, 1 row affected (0.06 sec)
+
+mysql> drop database royal;
+Query OK, 6 rows affected (0.25 sec)
+
+mysql> drop database php1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> create table foodmenu(foodid int,menu varchar(20),price int)
+    -> ;
+ERROR 1046 (3D000): No database selected
+mysql> use fooditem;
+Database changed
+mysql> create table foodmenu(foodid int,menu varchar(20),price int);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> select * from foodmenu;
+Empty set (0.02 sec)
+
+mysql> insert into values(1,'paratha',40);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use n
+ear 'values(1,'paratha',40)' at line 1
+mysql> insert into foodmenu values(1,'cake',40);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into foodmenu values(2,'pastries',90);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into foodmenu values(3,,'pizza',250);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use n
+ear ''pizza',250)' at line 1
+mysql> insert into foodmenu values(3,'pizza',250);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from foodmenu;
++--------+----------+-------+
+| foodid | menu     | price |
++--------+----------+-------+
+|      1 | cake     |    40 |
+|      2 | pastries |    90 |
+|      3 | pizza    |   250 |
++--------+----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> update foodmenu set menu='pancakes' where foodid=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from foodmenu;
++--------+----------+-------+
+| foodid | menu     | price |
++--------+----------+-------+
+|      1 | pancakes |    40 |
+|      2 | pastries |    90 |
+|      3 | pizza    |   250 |
++--------+----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> delete from foodmenu where menu=pancakes;
+ERROR 1054 (42S22): Unknown column 'pancakes' in 'where clause'
+mysql> delete from foodmenu where menu='pizza';
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into foodmenu values (4,'chips',40);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> delete from foodmenu where foodid in(2,3);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from foodmenu;
++--------+----------+-------+
+| foodid | menu     | price |
++--------+----------+-------+
+|      1 | pancakes |    40 |
+|      4 | chips    |    40 |
++--------+----------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into foodmenu(foodid,menu,price)values (2,'cakes'100),(3,'pizza',450);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use n
+ear '100),(3,'pizza',450)' at line 1
+mysql> insert into foodmenu(foodid,menu,price)values (2,'cakes',100),(3,'pizza',450);
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from foodmenu;
++--------+----------+-------+
+| foodid | menu     | price |
++--------+----------+-------+
+|      1 | pancakes |    40 |
+|      4 | chips    |    40 |
+|      2 | cakes    |   100 |
+|      3 | pizza    |   450 |
++--------+----------+-------+
+4 rows in set (0.00 sec)
+
+mysql> truncate table foodmenu;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> select * from foodmenu;
+Empty set (0.00 sec)
+
+mysql> drop table foodmenu;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from foodmenu;
+ERROR 1146 (42S02): Table 'fooditem.foodmenu' doesn't exist
+mysql>
