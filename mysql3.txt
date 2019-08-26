@@ -1,0 +1,362 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 5.1.38-community MySQL Community Server (GPL)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use vidyanidhi;
+Database changed
+mysql> select * from student_details;
++--------+---------+------------+---------+
+| stu_id | name    | mbno       | subject |
++--------+---------+------------+---------+
+|      1 | kasturi | 7506981180 | dac     |
+|      2 | sanika  | 7506936943 | maths   |
+|      3 | shivani | 7506981130 | dbda    |
+|      4 | shivam  | 7506981150 | dbms    |
+|      5 | mayur   | 7506981159 | dlda    |
+|      6 | neena   | 7502981159 | clda    |
++--------+---------+------------+---------+
+6 rows in set (0.02 sec)
+
+mysql> select * from student_details order by stu_id desc;
++--------+---------+------------+---------+
+| stu_id | name    | mbno       | subject |
++--------+---------+------------+---------+
+|      6 | neena   | 7502981159 | clda    |
+|      5 | mayur   | 7506981159 | dlda    |
+|      4 | shivam  | 7506981150 | dbms    |
+|      3 | shivani | 7506981130 | dbda    |
+|      2 | sanika  | 7506936943 | maths   |
+|      1 | kasturi | 7506981180 | dac     |
++--------+---------+------------+---------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student_details order by name desc;
++--------+---------+------------+---------+
+| stu_id | name    | mbno       | subject |
++--------+---------+------------+---------+
+|      3 | shivani | 7506981130 | dbda    |
+|      4 | shivam  | 7506981150 | dbms    |
+|      2 | sanika  | 7506936943 | maths   |
+|      6 | neena   | 7502981159 | clda    |
+|      5 | mayur   | 7506981159 | dlda    |
+|      1 | kasturi | 7506981180 | dac     |
++--------+---------+------------+---------+
+6 rows in set (0.02 sec)
+
+mysql> select * from student_details limit 3;
++--------+---------+------------+---------+
+| stu_id | name    | mbno       | subject |
++--------+---------+------------+---------+
+|      1 | kasturi | 7506981180 | dac     |
+|      2 | sanika  | 7506936943 | maths   |
+|      3 | shivani | 7506981130 | dbda    |
++--------+---------+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student_details order by name desc limit 3;
++--------+---------+------------+---------+
+| stu_id | name    | mbno       | subject |
++--------+---------+------------+---------+
+|      3 | shivani | 7506981130 | dbda    |
+|      4 | shivam  | 7506981150 | dbms    |
+|      2 | sanika  | 7506936943 | maths   |
++--------+---------+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select name from student_details;
++---------+
+| name    |
++---------+
+| kasturi |
+| sanika  |
+| shivani |
+| shivam  |
+| mayur   |
+| neena   |
++---------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student_details;
++--------+---------+------------+---------+
+| stu_id | name    | mbno       | subject |
++--------+---------+------------+---------+
+|      1 | kasturi | 7506981180 | dac     |
+|      2 | sanika  | 7506936943 | maths   |
+|      3 | shivani | 7506981130 | dbda    |
+|      4 | shivam  | 7506981150 | dbms    |
+|      5 | mayur   | 7506981159 | dlda    |
+|      6 | neena   | 7502981159 | clda    |
++--------+---------+------------+---------+
+6 rows in set (0.00 sec)
+
+mysql> select name from student_details where stu_id=3;
++---------+
+| name    |
++---------+
+| shivani |
++---------+
+1 row in set (0.03 sec)
+
+mysql> select * from student_details where stu-id=4;
+ERROR 1054 (42S22): Unknown column 'stu' in 'where clause'
+mysql> select * from student_details where stu_id=4;
++--------+--------+------------+---------+
+| stu_id | name   | mbno       | subject |
++--------+--------+------------+---------+
+|      4 | shivam | 7506981150 | dbms    |
++--------+--------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> alter table student_details add duration date;
+Query OK, 6 rows affected (0.30 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from student_details ;
++--------+---------+------------+---------+----------+
+| stu_id | name    | mbno       | subject | duration |
++--------+---------+------------+---------+----------+
+|      1 | kasturi | 7506981180 | dac     | NULL     |
+|      2 | sanika  | 7506936943 | maths   | NULL     |
+|      3 | shivani | 7506981130 | dbda    | NULL     |
+|      4 | shivam  | 7506981150 | dbms    | NULL     |
+|      5 | mayur   | 7506981159 | dlda    | NULL     |
+|      6 | neena   | 7502981159 | clda    | NULL     |
++--------+---------+------------+---------+----------+
+6 rows in set (0.00 sec)
+
+mysql> insert into student_details values(current_date());
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into student_details(duration) values (current date());
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'date())' at line 1
+mysql> insert into student_details(duration) values (06/12/2019);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from student_details;
++--------+---------+------------+---------+------------+
+| stu_id | name    | mbno       | subject | duration   |
++--------+---------+------------+---------+------------+
+|      1 | kasturi | 7506981180 | dac     | NULL       |
+|      2 | sanika  | 7506936943 | maths   | NULL       |
+|      3 | shivani | 7506981130 | dbda    | NULL       |
+|      4 | shivam  | 7506981150 | dbms    | NULL       |
+|      5 | mayur   | 7506981159 | dlda    | NULL       |
+|      6 | neena   | 7502981159 | clda    | NULL       |
+|      7 | NULL    | NULL       | NULL    | 0000-00-00 |
++--------+---------+------------+---------+------------+
+7 rows in set (0.00 sec)
+
+mysql> delete from student_details where stu_id=7;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from student_details;
++--------+---------+------------+---------+----------+
+| stu_id | name    | mbno       | subject | duration |
++--------+---------+------------+---------+----------+
+|      1 | kasturi | 7506981180 | dac     | NULL     |
+|      2 | sanika  | 7506936943 | maths   | NULL     |
+|      3 | shivani | 7506981130 | dbda    | NULL     |
+|      4 | shivam  | 7506981150 | dbms    | NULL     |
+|      5 | mayur   | 7506981159 | dlda    | NULL     |
+|      6 | neena   | 7502981159 | clda    | NULL     |
++--------+---------+------------+---------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student_details where name desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc' at line 1
+mysql> select * from student_details order by name desc;
++--------+---------+------------+---------+----------+
+| stu_id | name    | mbno       | subject | duration |
++--------+---------+------------+---------+----------+
+|      3 | shivani | 7506981130 | dbda    | NULL     |
+|      4 | shivam  | 7506981150 | dbms    | NULL     |
+|      2 | sanika  | 7506936943 | maths   | NULL     |
+|      6 | neena   | 7502981159 | clda    | NULL     |
+|      5 | mayur   | 7506981159 | dlda    | NULL     |
+|      1 | kasturi | 7506981180 | dac     | NULL     |
++--------+---------+------------+---------+----------+
+6 rows in set (0.00 sec)
+
+mysql> describe student_details;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| stu_id   | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(20) | YES  |     | NULL    |                |
+| mbno     | varchar(10) | YES  |     | NULL    |                |
+| subject  | varchar(20) | YES  |     | NULL    |                |
+| duration | date        | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> insert into student_details(duration) values(now());
+Query OK, 1 row affected, 1 warning (0.06 sec)
+
+mysql> select * from student_details;
++--------+---------+------------+---------+------------+
+| stu_id | name    | mbno       | subject | duration   |
++--------+---------+------------+---------+------------+
+|      1 | kasturi | 7506981180 | dac     | NULL       |
+|      2 | sanika  | 7506936943 | maths   | NULL       |
+|      3 | shivani | 7506981130 | dbda    | NULL       |
+|      4 | shivam  | 7506981150 | dbms    | NULL       |
+|      5 | mayur   | 7506981159 | dlda    | NULL       |
+|      6 | neena   | 7502981159 | clda    | NULL       |
+|      8 | NULL    | NULL       | NULL    | 2019-08-26 |
++--------+---------+------------+---------+------------+
+7 rows in set (0.00 sec)
+
+mysql> delete from student_details where stu_id=8;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> update student_details set duration=now();
+Query OK, 6 rows affected, 6 warnings (0.04 sec)
+Rows matched: 6  Changed: 6  Warnings: 6
+
+mysql> update student_details set duration='now()';
+ERROR 1292 (22007): Incorrect date value: 'now()' for column 'duration' at row 1
+mysql> update student_details set duration=now();
+Query OK, 0 rows affected, 6 warnings (0.03 sec)
+Rows matched: 6  Changed: 0  Warnings: 6
+
+mysql> select * from student_details;
++--------+---------+------------+---------+------------+
+| stu_id | name    | mbno       | subject | duration   |
++--------+---------+------------+---------+------------+
+|      1 | kasturi | 7506981180 | dac     | 2019-08-26 |
+|      2 | sanika  | 7506936943 | maths   | 2019-08-26 |
+|      3 | shivani | 7506981130 | dbda    | 2019-08-26 |
+|      4 | shivam  | 7506981150 | dbms    | 2019-08-26 |
+|      5 | mayur   | 7506981159 | dlda    | 2019-08-26 |
+|      6 | neena   | 7502981159 | clda    | 2019-08-26 |
++--------+---------+------------+---------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student_details;
++--------+---------+------------+---------+------------+
+| stu_id | name    | mbno       | subject | duration   |
++--------+---------+------------+---------+------------+
+|      1 | kasturi | 7506981180 | dac     | 2019-08-26 |
+|      2 | sanika  | 7506936943 | maths   | 2019-08-26 |
+|      3 | shivani | 7506981130 | dbda    | 2019-08-26 |
+|      4 | shivam  | 7506981150 | dbms    | 2019-08-26 |
+|      5 | mayur   | 7506981159 | dlda    | 2019-08-26 |
+|      6 | neena   | 7502981159 | clda    | 2019-08-26 |
++--------+---------+------------+---------+------------+
+6 rows in set (0.00 sec)
+
+mysql> alter table student_details add duration_1 timestamp;
+Query OK, 6 rows affected (0.20 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> update student_details set duration_1=now();
+Query OK, 6 rows affected (0.06 sec)
+Rows matched: 6  Changed: 6  Warnings: 0
+
+mysql> select * from student_details;
++--------+---------+------------+---------+------------+---------------------+
+| stu_id | name    | mbno       | subject | duration   | duration_1          |
++--------+---------+------------+---------+------------+---------------------+
+|      1 | kasturi | 7506981180 | dac     | 2019-08-26 | 2019-08-26 20:36:39 |
+|      2 | sanika  | 7506936943 | maths   | 2019-08-26 | 2019-08-26 20:36:39 |
+|      3 | shivani | 7506981130 | dbda    | 2019-08-26 | 2019-08-26 20:36:39 |
+|      4 | shivam  | 7506981150 | dbms    | 2019-08-26 | 2019-08-26 20:36:39 |
+|      5 | mayur   | 7506981159 | dlda    | 2019-08-26 | 2019-08-26 20:36:39 |
+|      6 | neena   | 7502981159 | clda    | 2019-08-26 | 2019-08-26 20:36:39 |
++--------+---------+------------+---------+------------+---------------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into student_details(duration_1) values('20190822103023');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from student_details;
++--------+---------+------------+---------+------------+---------------------+
+| stu_id | name    | mbno       | subject | duration   | duration_1          |
++--------+---------+------------+---------+------------+---------------------+
+|      1 | kasturi | 7506981180 | dac     | 2019-08-26 | 2019-08-26 20:36:39 |
+|      2 | sanika  | 7506936943 | maths   | 2019-08-26 | 2019-08-26 20:36:39 |
+|      3 | shivani | 7506981130 | dbda    | 2019-08-26 | 2019-08-26 20:36:39 |
+|      4 | shivam  | 7506981150 | dbms    | 2019-08-26 | 2019-08-26 20:36:39 |
+|      5 | mayur   | 7506981159 | dlda    | 2019-08-26 | 2019-08-26 20:36:39 |
+|      6 | neena   | 7502981159 | clda    | 2019-08-26 | 2019-08-26 20:36:39 |
+|      9 | NULL    | NULL       | NULL    | NULL       | 2019-08-22 10:30:23 |
++--------+---------+------------+---------+------------+---------------------+
+7 rows in set (0.00 sec)
+
+mysql> insert into student_details(duration_1) values('20190822');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from student_details;
++--------+---------+------------+---------+------------+---------------------+
+| stu_id | name    | mbno       | subject | duration   | duration_1          |
++--------+---------+------------+---------+------------+---------------------+
+|      1 | kasturi | 7506981180 | dac     | 2019-08-26 | 2019-08-26 20:36:39 |
+|      2 | sanika  | 7506936943 | maths   | 2019-08-26 | 2019-08-26 20:36:39 |
+|      3 | shivani | 7506981130 | dbda    | 2019-08-26 | 2019-08-26 20:36:39 |
+|      4 | shivam  | 7506981150 | dbms    | 2019-08-26 | 2019-08-26 20:36:39 |
+|      5 | mayur   | 7506981159 | dlda    | 2019-08-26 | 2019-08-26 20:36:39 |
+|      6 | neena   | 7502981159 | clda    | 2019-08-26 | 2019-08-26 20:36:39 |
+|      9 | NULL    | NULL       | NULL    | NULL       | 2019-08-22 10:30:23 |
+|     10 | NULL    | NULL       | NULL    | NULL       | 2019-08-22 00:00:00 |
++--------+---------+------------+---------+------------+---------------------+
+8 rows in set (0.00 sec)
+
+mysql> create table spl_datatypes(id int auto_increment primary key,
+    -> days enum('monday','tuesday','wednesday','thursday','friday','saturday','sunday'),
+    -> shift set('firsthalf','secondhalf','thirdhalf'));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> describe spl_datatypes;
++-------+------------------------------------------------------------------------------+------+-----+---------+----------------+
+| Field | Type                                                                         | Null | Key | Default | Extra          |
++-------+------------------------------------------------------------------------------+------+-----+---------+----------------+
+| id    | int(11)                                                                      | NO   | PRI | NULL    | auto_increment |
+| days  | enum('monday','tuesday','wednesday','thursday','friday','saturday','sunday') | YES  |     | NULL    |                |
+| shift | set('firsthalf','secondhalf','thirdhalf')                                    | YES  |     | NULL    |                |
++-------+------------------------------------------------------------------------------+------+-----+---------+----------------+
+3 rows in set (0.02 sec)
+
+mysql> insert into spl_datatypes(days,shift) values('monday','firsthalf,thirdhalf');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from spl_datatypes;
++----+--------+---------------------+
+| id | days   | shift               |
++----+--------+---------------------+
+|  1 | monday | firsthalf,thirdhalf |
++----+--------+---------------------+
+1 row in set (0.01 sec)
+
+mysql> insert into spl_datatypes(days,shift) values('tuesday','firsthalf,thirdshift');
+ERROR 1265 (01000): Data truncated for column 'shift' at row 1
+mysql> update spl_datatypes set days='tuesday';
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from spl_datatypes;
++----+---------+---------------------+
+| id | days    | shift               |
++----+---------+---------------------+
+|  1 | tuesday | firsthalf,thirdhalf |
++----+---------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into spl_datatype (days,shift) values ('monday','thirdhalf,secondhalf');
+ERROR 1146 (42S02): Table 'vidyanidhi.spl_datatype' doesn't exist
+mysql> insert into spl_datatype (days,shift) values('monday','thirdhalf,secondhalf');
+ERROR 1146 (42S02): Table 'vidyanidhi.spl_datatype' doesn't exist
+mysql> insert into spl_datatypes (days,shift) values('monday','thirdhalf,secondhalf');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from spl_datatypes;
++----+---------+----------------------+
+| id | days    | shift                |
++----+---------+----------------------+
+|  1 | tuesday | firsthalf,thirdhalf  |
+|  2 | monday  | secondhalf,thirdhalf |
++----+---------+----------------------+
+2 rows in set (0.00 sec)
+
+mysql>
