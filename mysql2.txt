@@ -1,47 +1,14 @@
 Enter password: ****
 Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 1
+Your MySQL connection id is 2
 Server version: 5.1.38-community MySQL Community Server (GPL)
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-mysql> show databases
-    -> ;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| abc                |
-| adventureworks     |
-| app                |
-| cspro              |
-| employee           |
-| exam               |
-| fleetdb            |
-| grocerystore       |
-| javadb             |
-| karamjeet          |
-| log                |
-| mydata             |
-| mydatabase         |
-| mydb               |
-| mysql              |
-| mywebdb            |
-| pmdd               |
-| pradb              |
-| reexam             |
-| suraj              |
-| test               |
-| vidyanidhi         |
-| vita_db17          |
-| workheet           |
-| worksheet          |
-+--------------------+
-26 rows in set (0.39 sec)
-
-mysql> create database restaurant;
-Query OK, 1 row affected (0.08 sec)
-
+mysql> show datbases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'datbases' at line 1
+mysql> show database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
 mysql> show databases;
 +--------------------+
 | Database           |
@@ -50,229 +17,7 @@ mysql> show databases;
 | abc                |
 | adventureworks     |
 | app                |
-| cspro              |
-| employee           |
-| exam               |
-| fleetdb            |
-| grocerystore       |
-| javadb             |
-| karamjeet          |
-| log                |
-| mydata             |
-| mydatabase         |
-| mydb               |
-| mysql              |
-| mywebdb            |
-| pmdd               |
-| pradb              |
-| reexam             |
-| restaurant         |
-| suraj              |
-| test               |
-| vidyanidhi         |
-| vita_db17          |
-| workheet           |
-| worksheet          |
-+--------------------+
-27 rows in set (0.01 sec)
-
-mysql> use restaurant;
-Database changed
-mysql> create table hotel(hid int primary key auto_increment,
-    -> hname varchar(20),
-    -> hmenu varchar(30),
-    -> price int)
-    -> );
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 5
-mysql> create table hotel(hid int primary key auto_increment,)
-    ->
-    -> create table hotel(hid int primary key auto_increment,)
-    -> create table hotel(hid int primary key auto_increment,
-    ->     -> hname varchar(20),
-    ->     -> hmenu varchar(30),
-    ->     -> price int
-    ->     -> );
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
-
-create table hotel(hid int primary key auto_increment,)
-create table hotel(hi' at line 1
-mysql> create table hotel(hid int primary key auto_increment,
-    ->     -> hname varchar(20),
-    ->     -> hmenu varchar(30),
-    ->     -> price int
-    ->     -> );
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> hname varchar(20),
-    -> hmenu varchar(30),
-    -> price int
-    -> )' at line 2
-mysql> create database housie;
-Query OK, 1 row affected (0.00 sec)
-
-mysql> use housie;
-Database changed
-mysql> create table persons(personid primary key autoincrement,
-    -> pname varchar(20),
-    -> city varchar(20)
-    -> );
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary key autoincrement,
-pname varchar(20),
-city varchar(20)
-)' at line 1
-mysql> create table persons(personid primary key auto_increment,
-    ->     -> pname varchar(20),
-    ->     -> city varchar(20)
-    ->     -> );
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary key auto_increment,
-    -> pname varchar(20),
-    -> city varchar(20)
-  ' at line 1
-mysql> create table persons(personid int primary key auto_increment,
-    ->     -> pname varchar(20),
-    ->     -> city varchar(20)
-    ->     -> );
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> pname varchar(20),
-    -> city varchar(20)
-    -> )' at line 2
-mysql> create table persons(personid int auto_increment primary key, pname varchar(20),city varchar(20));
-Query OK, 0 rows affected (0.17 sec)
-
-mysql> insert into persons(pname,city) values(rani,mumbai);
-ERROR 1054 (42S22): Unknown column 'rani' in 'field list'
-mysql> insert into persons(pname,city) values('rani','mumbai');
-Query OK, 1 row affected (0.05 sec)
-
-mysql> select * from persons;
-+----------+-------+--------+
-| personid | pname | city   |
-+----------+-------+--------+
-|        1 | rani  | mumbai |
-+----------+-------+--------+
-1 row in set (0.00 sec)
-
-mysql> insert into persons(pname,city) values('rani','mumbai'),('kasturi','bangalore'),('astha''noida');
-ERROR 1136 (21S01): Column count doesn't match value count at row 3
-mysql> insert into persons(pname,city) values('kasturi','bangalore'),('priya','nasik'),('kadambari','thane');
-Query OK, 3 rows affected (0.07 sec)
-Records: 3  Duplicates: 0  Warnings: 0
-
-mysql> select * from persons;
-+----------+-----------+-----------+
-| personid | pname     | city      |
-+----------+-----------+-----------+
-|        1 | rani      | mumbai    |
-|        2 | kasturi   | bangalore |
-|        3 | priya     | nasik     |
-|        4 | kadambari | thane     |
-+----------+-----------+-----------+
-4 rows in set (0.00 sec)
-
-mysql> describe persons;
-+----------+-------------+------+-----+---------+----------------+
-| Field    | Type        | Null | Key | Default | Extra          |
-+----------+-------------+------+-----+---------+----------------+
-| personid | int(11)     | NO   | PRI | NULL    | auto_increment |
-| pname    | varchar(20) | YES  |     | NULL    |                |
-| city     | varchar(20) | YES  |     | NULL    |                |
-+----------+-------------+------+-----+---------+----------------+
-3 rows in set (0.03 sec)
-
-mysql> select pname from persons where personid=4;
-+-----------+
-| pname     |
-+-----------+
-| kadambari |
-+-----------+
-1 row in set (0.01 sec)
-
-mysql> select pname as name from persons;
-+-----------+
-| name      |
-+-----------+
-| rani      |
-| kasturi   |
-| priya     |
-| kadambari |
-+-----------+
-4 rows in set (0.02 sec)
-
-mysql> select * from persons order by pname;
-+----------+-----------+-----------+
-| personid | pname     | city      |
-+----------+-----------+-----------+
-|        4 | kadambari | thane     |
-|        2 | kasturi   | bangalore |
-|        3 | priya     | nasik     |
-|        1 | rani      | mumbai    |
-+----------+-----------+-----------+
-4 rows in set (0.01 sec)
-
-mysql> select * from persons order by pname,city;
-+----------+-----------+-----------+
-| personid | pname     | city      |
-+----------+-----------+-----------+
-|        4 | kadambari | thane     |
-|        2 | kasturi   | bangalore |
-|        3 | priya     | nasik     |
-|        1 | rani      | mumbai    |
-+----------+-----------+-----------+
-4 rows in set (0.00 sec)
-
-mysql> select * from persons order by pname desc;
-+----------+-----------+-----------+
-| personid | pname     | city      |
-+----------+-----------+-----------+
-|        1 | rani      | mumbai    |
-|        3 | priya     | nasik     |
-|        2 | kasturi   | bangalore |
-|        4 | kadambari | thane     |
-+----------+-----------+-----------+
-4 rows in set (0.00 sec)
-
-mysql> select * from persons order by pname,city desc;
-+----------+-----------+-----------+
-| personid | pname     | city      |
-+----------+-----------+-----------+
-|        4 | kadambari | thane     |
-|        2 | kasturi   | bangalore |
-|        3 | priya     | nasik     |
-|        1 | rani      | mumbai    |
-+----------+-----------+-----------+
-4 rows in set (0.00 sec)
-
-mysql> select * from persons order by (pname,city) desc;
-ERROR 1241 (21000): Operand should contain 1 column(s)
-mysql> select * from persons order by pname asc,city desc;
-+----------+-----------+-----------+
-| personid | pname     | city      |
-+----------+-----------+-----------+
-|        4 | kadambari | thane     |
-|        2 | kasturi   | bangalore |
-|        3 | priya     | nasik     |
-|        1 | rani      | mumbai    |
-+----------+-----------+-----------+
-4 rows in set (0.00 sec)
-
-mysql> select pname from persons where pname like '%d';
-Empty set (0.02 sec)
-
-mysql> select pname from persons where pname like 'k%';
-+-----------+
-| pname     |
-+-----------+
-| kasturi   |
-| kadambari |
-+-----------+
-2 rows in set (0.00 sec)
-
-mysql>
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| abc                |
-| adventureworks     |
-| app                |
+| bookstore          |
 | cspro              |
 | employee           |
 | exam               |
@@ -291,6 +36,7 @@ mysql> show databases;
 | pradb              |
 | reexam             |
 | restaurant         |
+| sponsership        |
 | suraj              |
 | test               |
 | vidyanidhi         |
@@ -298,221 +44,301 @@ mysql> show databases;
 | workheet           |
 | worksheet          |
 +--------------------+
-28 rows in set (0.01 sec)
+30 rows in set (0.22 sec)
 
-mysql> create database sponsership;
-Query OK, 1 row affected (0.00 sec)
+mysql> create database productcategories;
+Query OK, 1 row affected (0.02 sec)
 
-mysql> use sponsership;
+mysql> use productcategories;
 Database changed
-mysql> create table member(memberid int auto_increment primary key,fname varchar(20) not null,
-    -> mname varchar(10),lname varchar(20) not null,mem_doj date,email varchar(30),phone char(10),
-    -> mem_type enum('regular','silver','gold','premium')
-    -> );
-Query OK, 0 rows affected (0.04 sec)
+mysql> create table productcategory(pid int primary key auto_increment,pname varchar(255),quantity varchar(20));
+Query OK, 0 rows affected (0.09 sec)
 
-mysql> describe member;
-+----------+-------------------------------------------+------+-----+---------+----------------+
-| Field    | Type                                      | Null | Key | Default | Extra          |
-+----------+-------------------------------------------+------+-----+---------+----------------+
-| memberid | int(11)                                   | NO   | PRI | NULL    | auto_increment |
-| fname    | varchar(20)                               | NO   |     | NULL    |                |
-| mname    | varchar(10)                               | YES  |     | NULL    |                |
-| lname    | varchar(20)                               | NO   |     | NULL    |                |
-| mem_doj  | date                                      | YES  |     | NULL    |                |
-| email    | varchar(30)                               | YES  |     | NULL    |                |
-| phone    | char(10)                                  | YES  |     | NULL    |                |
-| mem_type | enum('regular','silver','gold','premium') | YES  |     | NULL    |                |
-+----------+-------------------------------------------+------+-----+---------+----------------+
-8 rows in set (0.02 sec)
-
-mysql> alter table member add constraint member_email_uq unique(email);
-Query OK, 0 rows affected (0.19 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-mysql> describe member;
-+----------+-------------------------------------------+------+-----+---------+----------------+
-| Field    | Type                                      | Null | Key | Default | Extra          |
-+----------+-------------------------------------------+------+-----+---------+----------------+
-| memberid | int(11)                                   | NO   | PRI | NULL    | auto_increment |
-| fname    | varchar(20)                               | NO   |     | NULL    |                |
-| mname    | varchar(10)                               | YES  |     | NULL    |                |
-| lname    | varchar(20)                               | NO   |     | NULL    |                |
-| mem_doj  | date                                      | YES  |     | NULL    |                |
-| email    | varchar(30)                               | YES  | UNI | NULL    |                |
-| phone    | char(10)                                  | YES  |     | NULL    |                |
-| mem_type | enum('regular','silver','gold','premium') | YES  |     | NULL    |                |
-+----------+-------------------------------------------+------+-----+---------+----------------+
-8 rows in set (0.00 sec)
-
-mysql> insert into member (fname,mname,lname,mem_doj,email,phone,mem_type) values ('kasturi',null,'phalak',now(),'kasturi@rediffmail.com','9422776598','regular');
-Query OK, 1 row affected, 1 warning (0.05 sec)
-
-mysql> select * from member;
-+----------+---------+-------+--------+------------+------------------------+------------+----------+
-| memberid | fname   | mname | lname  | mem_doj    | email                  | phone      | mem_type |
-+----------+---------+-------+--------+------------+------------------------+------------+----------+
-|        1 | kasturi | NULL  | phalak | 2019-08-27 | kasturi@rediffmail.com | 9422776598 | regular  |
-+----------+---------+-------+--------+------------+------------------------+------------+----------+
-1 row in set (0.02 sec)
-
-mysql> insert into member (fname,mname,lname,mem_doj,email,phone,mem_type) values ('janet',l,'smith',now(),null,'9422776593','premium');
-ERROR 1054 (42S22): Unknown column 'l' in 'field list'
-mysql> insert into member (fname,mname,lname,mem_doj,email,phone,mem_type) values ('janet','l','smith',now(),null,'9422776593','premium');
-Query OK, 1 row affected, 1 warning (0.03 sec)
-
-mysql> insert into member (fname,mname,lname,mem_doj,email,phone,mem_type) values ('jack','k','smith','2019-08-27',null,'9422776593','silver');
-Query OK, 1 row affected (0.04 sec)
-
-mysql> select * from member;
-+----------+---------+-------+--------+------------+------------------------+------------+----------+
-| memberid | fname   | mname | lname  | mem_doj    | email                  | phone      | mem_type |
-+----------+---------+-------+--------+------------+------------------------+------------+----------+
-|        1 | kasturi | NULL  | phalak | 2019-08-27 | kasturi@rediffmail.com | 9422776598 | regular  |
-|        2 | janet   | l     | smith  | 2019-08-27 | NULL                   | 9422776593 | premium  |
-|        3 | jack    | k     | smith  | 2019-08-27 | NULL                   | 9422776593 | silver   |
-+----------+---------+-------+--------+------------+------------------------+------------+----------+
-3 rows in set (0.00 sec)
-
-mysql> create database bookstore;
-Query OK, 1 row affected (0.00 sec)
-
-mysql> use bookstore;
-Database changed
-mysql> create table book(bookid int primary key auto_increment,bname varchar(50) not null,price decimal(6,2));
-Query OK, 0 rows affected (0.11 sec)
-
-mysql> describe book;
-+--------+--------------+------+-----+---------+----------------+
-| Field  | Type         | Null | Key | Default | Extra          |
-+--------+--------------+------+-----+---------+----------------+
-| bookid | int(11)      | NO   | PRI | NULL    | auto_increment |
-| bname  | varchar(50)  | NO   |     | NULL    |                |
-| price  | decimal(6,2) | YES  |     | NULL    |                |
-+--------+--------------+------+-----+---------+----------------+
+mysql> describe productcategory;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| pid      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| pname    | varchar(255) | YES  |     | NULL    |                |
+| quantity | varchar(20)  | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
 3 rows in set (0.03 sec)
 
-mysql> alter table book add column author varchar(40) not null;
-Query OK, 0 rows affected (0.12 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-mysql> describe book;
-+--------+--------------+------+-----+---------+----------------+
-| Field  | Type         | Null | Key | Default | Extra          |
-+--------+--------------+------+-----+---------+----------------+
-| bookid | int(11)      | NO   | PRI | NULL    | auto_increment |
-| bname  | varchar(50)  | NO   |     | NULL    |                |
-| price  | decimal(6,2) | YES  |     | NULL    |                |
-| author | varchar(40)  | NO   |     | NULL    |                |
-+--------+--------------+------+-----+---------+----------------+
-4 rows in set (0.00 sec)
-
-mysql> alter table book modify column author varchar(30) not null;
-Query OK, 0 rows affected (0.16 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-mysql> alter table book modify column author char(30) not null;
-Query OK, 0 rows affected (0.13 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-mysql> describe book;
-+--------+--------------+------+-----+---------+----------------+
-| Field  | Type         | Null | Key | Default | Extra          |
-+--------+--------------+------+-----+---------+----------------+
-| bookid | int(11)      | NO   | PRI | NULL    | auto_increment |
-| bname  | varchar(50)  | NO   |     | NULL    |                |
-| price  | decimal(6,2) | YES  |     | NULL    |                |
-| author | char(30)     | NO   |     | NULL    |                |
-+--------+--------------+------+-----+---------+----------------+
-4 rows in set (0.00 sec)
-
-mysql> alter table book drop column author char(30) not null;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'char(30) not null' at line 1
-mysql> alter table book drop column author;
-Query OK, 0 rows affected (0.15 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-mysql> insert into book(bname,price)values('harrypotter',450),('reckless',500);
-Query OK, 2 rows affected (0.03 sec)
-Records: 2  Duplicates: 0  Warnings: 0
-
-mysql> insert into book(bname,price)values('harrypotter',null),('reckless',-500);
-Query OK, 2 rows affected (0.44 sec)
-Records: 2  Duplicates: 0  Warnings: 0
-
-mysql> select * from book;
-+--------+-------------+---------+
-| bookid | bname       | price   |
-+--------+-------------+---------+
-|      1 | harrypotter |  450.00 |
-|      2 | reckless    |  500.00 |
-|      3 | harrypotter |    NULL |
-|      4 | reckless    | -500.00 |
-+--------+-------------+---------+
-4 rows in set (0.02 sec)
-
-mysql> delete from book where bookid=4;
+mysql> insert into productcategory(pid,pname,quantity)values (1,'pencil',8);
 Query OK, 1 row affected (0.04 sec)
 
-mysql> select * from book;
-+--------+-------------+--------+
-| bookid | bname       | price  |
-+--------+-------------+--------+
-|      1 | harrypotter | 450.00 |
-|      2 | reckless    | 500.00 |
-|      3 | harrypotter |   NULL |
-+--------+-------------+--------+
+mysql> insert into productcategory(pname,quantity)values ('pen','56');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into productcategory(pname,quantity)values ('colorbox','256');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into productcategory(pname,quantity)values ('colorbox','65535');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> describe productcategory;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| pid      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| pname    | varchar(255) | YES  |     | NULL    |                |
+| quantity | varchar(20)  | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
 3 rows in set (0.00 sec)
 
-mysql> create table booktran(trnid int primary key auto_increment,trndate datetime,bookid int references book(bookid),memberid int references member(memberid)
-    -> );
-Query OK, 0 rows affected (0.06 sec)
+mysql> select * from productcategory;
++-----+----------+----------+
+| pid | pname    | quantity |
++-----+----------+----------+
+|   1 | pencil   | 8        |
+|   2 | pen      | 56       |
+|   3 | colorbox | 256      |
+|   4 | colorbox | 65535    |
++-----+----------+----------+
+4 rows in set (0.00 sec)
 
-mysql> describe booktran;
-+----------+----------+------+-----+---------+----------------+
-| Field    | Type     | Null | Key | Default | Extra          |
-+----------+----------+------+-----+---------+----------------+
-| trnid    | int(11)  | NO   | PRI | NULL    | auto_increment |
-| trndate  | datetime | YES  |     | NULL    |                |
-| bookid   | int(11)  | YES  |     | NULL    |                |
-| memberid | int(11)  | YES  |     | NULL    |                |
-+----------+----------+------+-----+---------+----------------+
+mysql> insert into productcategory(pname,quantity)values ('colorbox','65536');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from productcategory;
++-----+----------+----------+
+| pid | pname    | quantity |
++-----+----------+----------+
+|   1 | pencil   | 8        |
+|   2 | pen      | 56       |
+|   3 | colorbox | 256      |
+|   4 | colorbox | 65535    |
+|   5 | colorbox | 65536    |
++-----+----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> insert into productcategory(pname,quantity)values ('colorbox','655366985497854565789665478');
+ERROR 1406 (22001): Data too long for column 'quantity' at row 1
+mysql>  select pid as id  ,name from productcategory where productctegoryid > 3;
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql>  select pid as id  ,pname from productcategory where productctegoryid > 3;
+ERROR 1054 (42S22): Unknown column 'productctegoryid' in 'where clause'
+mysql>  select pid as id  ,pname from productcategory where productcategoryid > 3;
+ERROR 1054 (42S22): Unknown column 'productcategoryid' in 'where clause'
+mysql>  select pid as id  ,pname from productcategory where pid > 3;
++----+----------+
+| id | pname    |
++----+----------+
+|  4 | colorbox |
+|  5 | colorbox |
++----+----------+
+2 rows in set (0.01 sec)
+
+mysql>  select pid as id  ,pname from productcategory where pid <> 3;
++----+----------+
+| id | pname    |
++----+----------+
+|  1 | pencil   |
+|  2 | pen      |
+|  4 | colorbox |
+|  5 | colorbox |
++----+----------+
+4 rows in set (0.00 sec)
+
+mysql>  select pid as id  ,pname from productcategory where pid != 2;
++----+----------+
+| id | pname    |
++----+----------+
+|  1 | pencil   |
+|  3 | colorbox |
+|  4 | colorbox |
+|  5 | colorbox |
++----+----------+
+4 rows in set (0.00 sec)
+
+mysql>  select pid ,pname,quantity ,quantity -5 as tax from productcategory where quantity-5> 3;
++-----+----------+----------+-------+
+| pid | pname    | quantity | tax   |
++-----+----------+----------+-------+
+|   2 | pen      | 56       |    51 |
+|   3 | colorbox | 256      |   251 |
+|   4 | colorbox | 65535    | 65530 |
+|   5 | colorbox | 65536    | 65531 |
++-----+----------+----------+-------+
 4 rows in set (0.01 sec)
 
-mysql> select * from booktran;
+mysql>  select pid ,pname,quantity ,quantity -5 as tax from productcategory where quantity-5> 2;
++-----+----------+----------+-------+
+| pid | pname    | quantity | tax   |
++-----+----------+----------+-------+
+|   1 | pencil   | 8        |     3 |
+|   2 | pen      | 56       |    51 |
+|   3 | colorbox | 256      |   251 |
+|   4 | colorbox | 65535    | 65530 |
+|   5 | colorbox | 65536    | 65531 |
++-----+----------+----------+-------+
+5 rows in set (0.00 sec)
+
+mysql>  select pid ,pname,quantity ,quantity -5 as tax from productcategory where quantity-5> 1000;
++-----+----------+----------+-------+
+| pid | pname    | quantity | tax   |
++-----+----------+----------+-------+
+|   4 | colorbox | 65535    | 65530 |
+|   5 | colorbox | 65536    | 65531 |
++-----+----------+----------+-------+
+2 rows in set (0.00 sec)
+
+mysql>  select pid ,pname,quantity ,quantity -5 as tax from productcategory where quantity-5<500;
++-----+----------+----------+------+
+| pid | pname    | quantity | tax  |
++-----+----------+----------+------+
+|   1 | pencil   | 8        |    3 |
+|   2 | pen      | 56       |   51 |
+|   3 | colorbox | 256      |  251 |
++-----+----------+----------+------+
+3 rows in set (0.00 sec)
+
+mysql>  select pid ,pname,quantity ,quantity -5 as tax from productcategory where quantity-5<500;
++-----+----------+----------+------+
+| pid | pname    | quantity | tax  |
++-----+----------+----------+------+
+|   1 | pencil   | 8        |    3 |
+|   2 | pen      | 56       |   51 |
+|   3 | colorbox | 256      |  251 |
++-----+----------+----------+------+
+3 rows in set (0.00 sec)
+
+mysql> select pid,pname,quantity from productcategory where pname = 'o';
 Empty set (0.00 sec)
 
-mysql> drop table booktran;
-Query OK, 0 rows affected (0.03 sec)
+mysql> select pid,pname,quantity from productcategory where pname = 'p';
+Empty set (0.00 sec)
 
-mysql> create table booktran(trnid int primary key auto_increment,trndate datetime,bookid int,memberid int ,
-    -> constraint booktran_bookid_fk foreign key(bookid) references book(bookid),constraint booktran_memberid_fk foreign key(memberid) references member(memberid)
-    -> );
-ERROR 1005 (HY000): Can't create table 'bookstore.booktran' (errno: 150)
-mysql> constraint booktran_bookid_fk foreign key(bookid) references book(bookid),constraint booktran_memberid_fk foreign key(memberid) references member(memberid)
-    -> );
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'constraint booktran_bookid_fk foreign key(bookid) references book(bookid),constr' at line 1
-mysql> use housie;
-Database changed
+mysql> select pid,pname,quantity from productcategory where pname = 'l';
+Empty set (0.00 sec)
+
+mysql> select pid,pname,quantity from productcategory where pname = 'pencil';
++-----+--------+----------+
+| pid | pname  | quantity |
++-----+--------+----------+
+|   1 | pencil | 8        |
++-----+--------+----------+
+1 row in set (0.00 sec)
+
+mysql> select pid,pname,quantity from productcategory where pname = 'pencil';
++-----+--------+----------+
+| pid | pname  | quantity |
++-----+--------+----------+
+|   1 | pencil | 8        |
++-----+--------+----------+
+1 row in set (0.00 sec)
+
+mysql> select pname from productcategory where pname like 'c____' ;
+Empty set (0.00 sec)
+
+mysql> select pname from productcategory where pname like 'p_____' ;
++--------+
+| pname  |
++--------+
+| pencil |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select pname from productcategory where pname like 'p___' ;
+Empty set (0.00 sec)
+
+mysql> select pname from productcategory where pname like '_e____' ;
++--------+
+| pname  |
++--------+
+| pencil |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select pname from productcategory where pname like '____' ;
+Empty set (0.00 sec)
+
+mysql> select pname from productcategory where pname like '______' ;
++--------+
+| pname  |
++--------+
+| pencil |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select pname from productcategory where pname like '___' ;
++-------+
+| pname |
++-------+
+| pen   |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select pname from productcategory where pname like 'p??'
+    -> ;
+Empty set (0.00 sec)
+
+mysql> select length(pname),pname from productcategory where length (pname)=3;
++---------------+-------+
+| length(pname) | pname |
++---------------+-------+
+|             3 | pen   |
++---------------+-------+
+1 row in set (0.42 sec)
+
+mysql> select length(pname),pname from productcategory where length (pname)=6;
++---------------+--------+
+| length(pname) | pname  |
++---------------+--------+
+|             6 | pencil |
++---------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select length(pname),pname from productcategory where length (pname)=9;
+Empty set (0.00 sec)
+
+mysql> select length(pname),pname from productcategory where length (pname)=8;
++---------------+----------+
+| length(pname) | pname    |
++---------------+----------+
+|             8 | colorbox |
+|             8 | colorbox |
+|             8 | colorbox |
++---------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select length(pname),pname from productcategory where length (pname)=6;
++---------------+--------+
+| length(pname) | pname  |
++---------------+--------+
+|             6 | pencil |
++---------------+--------+
+1 row in set (0.00 sec)
+
 mysql>
-mysql> CREATE TABLE Persons1 (
-    ->     ID int NOT NULL,
-    ->     LastName varchar(255) NOT NULL,
-    ->     FirstName varchar(255),
-    ->     Age int,
-    ->     CHECK (Age>=18)
-    -> );
-Query OK, 0 rows affected (0.07 sec)
+mysql> desc productcategory
+    -> ;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| pid      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| pname    | varchar(255) | YES  |     | NULL    |                |
+| quantity | varchar(20)  | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
 
-mysql> describe persons1;
-+-----------+--------------+------+-----+---------+-------+
-| Field     | Type         | Null | Key | Default | Extra |
-+-----------+--------------+------+-----+---------+-------+
-| ID        | int(11)      | NO   |     | NULL    |       |
-| LastName  | varchar(255) | NO   |     | NULL    |       |
-| FirstName | varchar(255) | YES  |     | NULL    |       |
-| Age       | int(11)      | YES  |     | NULL    |       |
-+-----------+--------------+------+-----+---------+-------+
-4 rows in set (0.01 sec)
+mysql> select length(pname),pname from productcategory where pname like 'p__';
++---------------+-------+
+| length(pname) | pname |
++---------------+-------+
+|             3 | pen   |
++---------------+-------+
+1 row in set (0.00 sec)
 
-mysql>
+mysql> select length(pname),pname from productcategory where pname like '___';
++---------------+-------+
+| length(pname) | pname |
++---------------+-------+
+|             3 | pen   |
++---------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select length(pname),pname from productcategory where pname like 'c';
+Empty set (0.00 sec)
+
+mysql> select length(pname),pname from productcategory where pname like 'c';
