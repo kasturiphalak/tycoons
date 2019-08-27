@@ -1,0 +1,344 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.1.38-community MySQL Community Server (GPL)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show datbases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'datbases' at line 1
+mysql> show database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| abc                |
+| adventureworks     |
+| app                |
+| bookstore          |
+| cspro              |
+| employee           |
+| exam               |
+| fleetdb            |
+| grocerystore       |
+| housie             |
+| javadb             |
+| karamjeet          |
+| log                |
+| mydata             |
+| mydatabase         |
+| mydb               |
+| mysql              |
+| mywebdb            |
+| pmdd               |
+| pradb              |
+| reexam             |
+| restaurant         |
+| sponsership        |
+| suraj              |
+| test               |
+| vidyanidhi         |
+| vita_db17          |
+| workheet           |
+| worksheet          |
++--------------------+
+30 rows in set (0.22 sec)
+
+mysql> create database productcategories;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use productcategories;
+Database changed
+mysql> create table productcategory(pid int primary key auto_increment,pname varchar(255),quantity varchar(20));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> describe productcategory;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| pid      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| pname    | varchar(255) | YES  |     | NULL    |                |
+| quantity | varchar(20)  | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.03 sec)
+
+mysql> insert into productcategory(pid,pname,quantity)values (1,'pencil',8);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into productcategory(pname,quantity)values ('pen','56');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into productcategory(pname,quantity)values ('colorbox','256');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into productcategory(pname,quantity)values ('colorbox','65535');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> describe productcategory;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| pid      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| pname    | varchar(255) | YES  |     | NULL    |                |
+| quantity | varchar(20)  | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from productcategory;
++-----+----------+----------+
+| pid | pname    | quantity |
++-----+----------+----------+
+|   1 | pencil   | 8        |
+|   2 | pen      | 56       |
+|   3 | colorbox | 256      |
+|   4 | colorbox | 65535    |
++-----+----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> insert into productcategory(pname,quantity)values ('colorbox','65536');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from productcategory;
++-----+----------+----------+
+| pid | pname    | quantity |
++-----+----------+----------+
+|   1 | pencil   | 8        |
+|   2 | pen      | 56       |
+|   3 | colorbox | 256      |
+|   4 | colorbox | 65535    |
+|   5 | colorbox | 65536    |
++-----+----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> insert into productcategory(pname,quantity)values ('colorbox','655366985497854565789665478');
+ERROR 1406 (22001): Data too long for column 'quantity' at row 1
+mysql>  select pid as id  ,name from productcategory where productctegoryid > 3;
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql>  select pid as id  ,pname from productcategory where productctegoryid > 3;
+ERROR 1054 (42S22): Unknown column 'productctegoryid' in 'where clause'
+mysql>  select pid as id  ,pname from productcategory where productcategoryid > 3;
+ERROR 1054 (42S22): Unknown column 'productcategoryid' in 'where clause'
+mysql>  select pid as id  ,pname from productcategory where pid > 3;
++----+----------+
+| id | pname    |
++----+----------+
+|  4 | colorbox |
+|  5 | colorbox |
++----+----------+
+2 rows in set (0.01 sec)
+
+mysql>  select pid as id  ,pname from productcategory where pid <> 3;
++----+----------+
+| id | pname    |
++----+----------+
+|  1 | pencil   |
+|  2 | pen      |
+|  4 | colorbox |
+|  5 | colorbox |
++----+----------+
+4 rows in set (0.00 sec)
+
+mysql>  select pid as id  ,pname from productcategory where pid != 2;
++----+----------+
+| id | pname    |
++----+----------+
+|  1 | pencil   |
+|  3 | colorbox |
+|  4 | colorbox |
+|  5 | colorbox |
++----+----------+
+4 rows in set (0.00 sec)
+
+mysql>  select pid ,pname,quantity ,quantity -5 as tax from productcategory where quantity-5> 3;
++-----+----------+----------+-------+
+| pid | pname    | quantity | tax   |
++-----+----------+----------+-------+
+|   2 | pen      | 56       |    51 |
+|   3 | colorbox | 256      |   251 |
+|   4 | colorbox | 65535    | 65530 |
+|   5 | colorbox | 65536    | 65531 |
++-----+----------+----------+-------+
+4 rows in set (0.01 sec)
+
+mysql>  select pid ,pname,quantity ,quantity -5 as tax from productcategory where quantity-5> 2;
++-----+----------+----------+-------+
+| pid | pname    | quantity | tax   |
++-----+----------+----------+-------+
+|   1 | pencil   | 8        |     3 |
+|   2 | pen      | 56       |    51 |
+|   3 | colorbox | 256      |   251 |
+|   4 | colorbox | 65535    | 65530 |
+|   5 | colorbox | 65536    | 65531 |
++-----+----------+----------+-------+
+5 rows in set (0.00 sec)
+
+mysql>  select pid ,pname,quantity ,quantity -5 as tax from productcategory where quantity-5> 1000;
++-----+----------+----------+-------+
+| pid | pname    | quantity | tax   |
++-----+----------+----------+-------+
+|   4 | colorbox | 65535    | 65530 |
+|   5 | colorbox | 65536    | 65531 |
++-----+----------+----------+-------+
+2 rows in set (0.00 sec)
+
+mysql>  select pid ,pname,quantity ,quantity -5 as tax from productcategory where quantity-5<500;
++-----+----------+----------+------+
+| pid | pname    | quantity | tax  |
++-----+----------+----------+------+
+|   1 | pencil   | 8        |    3 |
+|   2 | pen      | 56       |   51 |
+|   3 | colorbox | 256      |  251 |
++-----+----------+----------+------+
+3 rows in set (0.00 sec)
+
+mysql>  select pid ,pname,quantity ,quantity -5 as tax from productcategory where quantity-5<500;
++-----+----------+----------+------+
+| pid | pname    | quantity | tax  |
++-----+----------+----------+------+
+|   1 | pencil   | 8        |    3 |
+|   2 | pen      | 56       |   51 |
+|   3 | colorbox | 256      |  251 |
++-----+----------+----------+------+
+3 rows in set (0.00 sec)
+
+mysql> select pid,pname,quantity from productcategory where pname = 'o';
+Empty set (0.00 sec)
+
+mysql> select pid,pname,quantity from productcategory where pname = 'p';
+Empty set (0.00 sec)
+
+mysql> select pid,pname,quantity from productcategory where pname = 'l';
+Empty set (0.00 sec)
+
+mysql> select pid,pname,quantity from productcategory where pname = 'pencil';
++-----+--------+----------+
+| pid | pname  | quantity |
++-----+--------+----------+
+|   1 | pencil | 8        |
++-----+--------+----------+
+1 row in set (0.00 sec)
+
+mysql> select pid,pname,quantity from productcategory where pname = 'pencil';
++-----+--------+----------+
+| pid | pname  | quantity |
++-----+--------+----------+
+|   1 | pencil | 8        |
++-----+--------+----------+
+1 row in set (0.00 sec)
+
+mysql> select pname from productcategory where pname like 'c____' ;
+Empty set (0.00 sec)
+
+mysql> select pname from productcategory where pname like 'p_____' ;
++--------+
+| pname  |
++--------+
+| pencil |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select pname from productcategory where pname like 'p___' ;
+Empty set (0.00 sec)
+
+mysql> select pname from productcategory where pname like '_e____' ;
++--------+
+| pname  |
++--------+
+| pencil |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select pname from productcategory where pname like '____' ;
+Empty set (0.00 sec)
+
+mysql> select pname from productcategory where pname like '______' ;
++--------+
+| pname  |
++--------+
+| pencil |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select pname from productcategory where pname like '___' ;
++-------+
+| pname |
++-------+
+| pen   |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select pname from productcategory where pname like 'p??'
+    -> ;
+Empty set (0.00 sec)
+
+mysql> select length(pname),pname from productcategory where length (pname)=3;
++---------------+-------+
+| length(pname) | pname |
++---------------+-------+
+|             3 | pen   |
++---------------+-------+
+1 row in set (0.42 sec)
+
+mysql> select length(pname),pname from productcategory where length (pname)=6;
++---------------+--------+
+| length(pname) | pname  |
++---------------+--------+
+|             6 | pencil |
++---------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select length(pname),pname from productcategory where length (pname)=9;
+Empty set (0.00 sec)
+
+mysql> select length(pname),pname from productcategory where length (pname)=8;
++---------------+----------+
+| length(pname) | pname    |
++---------------+----------+
+|             8 | colorbox |
+|             8 | colorbox |
+|             8 | colorbox |
++---------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select length(pname),pname from productcategory where length (pname)=6;
++---------------+--------+
+| length(pname) | pname  |
++---------------+--------+
+|             6 | pencil |
++---------------+--------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> desc productcategory
+    -> ;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| pid      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| pname    | varchar(255) | YES  |     | NULL    |                |
+| quantity | varchar(20)  | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select length(pname),pname from productcategory where pname like 'p__';
++---------------+-------+
+| length(pname) | pname |
++---------------+-------+
+|             3 | pen   |
++---------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select length(pname),pname from productcategory where pname like '___';
++---------------+-------+
+| length(pname) | pname |
++---------------+-------+
+|             3 | pen   |
++---------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select length(pname),pname from productcategory where pname like 'c';
+Empty set (0.00 sec)
+
+mysql> select length(pname),pname from productcategory where pname like 'c';
