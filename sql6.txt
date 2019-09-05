@@ -1,0 +1,1166 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.1.38-community MySQL Community Server (GPL)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| abc                |
+| adventureworks     |
+| app                |
+| bookstore          |
+| cspro              |
+| employee           |
+| exam               |
+| fleetdb            |
+| grocerystore       |
+| housie             |
+| javadb             |
+| joins              |
+| karamjeet          |
+| kasturi            |
+| log                |
+| mydata             |
+| mydatabase         |
+| mydb               |
+| mysql              |
+| mywebdb            |
+| pmdd               |
+| pradb              |
+| productcategories  |
+| reexam             |
+| restaurant         |
+| sponsership        |
+| suraj              |
+| test               |
+| vidyanidhi         |
+| vita_db17          |
+| workheet           |
+| worksheet          |
++--------------------+
+33 rows in set (0.39 sec)
+
+mysql> create database assignment;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> create table salespeople(snum int primary key auto_increment,
+    ->
+    -> );
+ERROR 1046 (3D000): No database selected
+mysql> create table salespeople(snum int primary key,
+    -> sname varchar(10),
+    -> city varchar(10),
+    -> comm decimal
+    -> );
+ERROR 1046 (3D000): No database selected
+mysql> use assignment;
+Database changed
+mysql> create table salespeople(snum int primary key,
+    -> sname varchar(10),
+    -> city varchar(10),
+    -> comm decimal
+    -> );
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> desc salespeople;
++-------+---------------+------+-----+---------+-------+
+| Field | Type          | Null | Key | Default | Extra |
++-------+---------------+------+-----+---------+-------+
+| snum  | int(11)       | NO   | PRI | NULL    |       |
+| sname | varchar(10)   | YES  |     | NULL    |       |
+| city  | varchar(10)   | YES  |     | NULL    |       |
+| comm  | decimal(10,0) | YES  |     | NULL    |       |
++-------+---------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into salespeople(snum,sname,city,comm)values(1001,'peel','london',0.12),(1002,'serres','san jose',0.13),(1004,'motika','london',0.11),(1007,'rifkin','barcelona',0.15),(1003,'axelrod','newyork',0.10),(1005,'fran','london',0.26);
+Query OK, 6 rows affected, 6 warnings (0.03 sec)
+Records: 6  Duplicates: 0  Warnings: 6
+
+mysql> select * from salespeople;
++------+---------+-----------+------+
+| snum | sname   | city      | comm |
++------+---------+-----------+------+
+| 1001 | peel    | london    |    0 |
+| 1002 | serres  | san jose  |    0 |
+| 1003 | axelrod | newyork   |    0 |
+| 1004 | motika  | london    |    0 |
+| 1005 | fran    | london    |    0 |
+| 1007 | rifkin  | barcelona |    0 |
++------+---------+-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> drop table salespeople;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table salespeople(snum int primary key,
+    -> sname varchar(10),
+    -> city varchar(10),
+    -> comm decimal(8,2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 4
+mysql> create table salespeople(snum int primary key,
+    -> sname varchar(20),
+    -> city varchar(20),
+    -> comm decimal(2,2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 4
+mysql> create table salespeople(snum int primary key,
+    ->     sname varchar(20),
+    ->      city varchar(20),
+    ->     comm decimal(2,2)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql>  insert into salespeople(snum,sname,city,comm)values(1001,'peel','london',0.12),(1002,'serres','san jose',0.13),(1004,'motika','london',0.11),(1007,'rifkin','barcelona',0.15),(1003,'axelrod','newyork',0.10),(1005,'fran','london',0.26);
+Query OK, 6 rows affected (0.03 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from salespeople;
++------+---------+-----------+------+
+| snum | sname   | city      | comm |
++------+---------+-----------+------+
+| 1001 | peel    | london    | 0.12 |
+| 1002 | serres  | san jose  | 0.13 |
+| 1003 | axelrod | newyork   | 0.10 |
+| 1004 | motika  | london    | 0.11 |
+| 1005 | fran    | london    | 0.26 |
+| 1007 | rifkin  | barcelona | 0.15 |
++------+---------+-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> select  comm from salespeople order by comm;
++------+
+| comm |
++------+
+| 0.10 |
+| 0.11 |
+| 0.12 |
+| 0.13 |
+| 0.15 |
+| 0.26 |
++------+
+6 rows in set (0.02 sec)
+
+mysql> create table customer(cnum int,
+    -> cname varchar(255),
+    -> city varchar(255),snum int
+    -> );
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> alter table customer add column rating int after city;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into customer values(2001,'hoffman,'london',100,1001),
+    '> (2002,'giovanni','rome',200,1003),
+    '> (2003,'liu','sanjose',200,1002),
+    '> (2004,'grass','berlin',300,1002),
+    '> (2006,'clemens','london',100,1001),
+    '> (2008,'cisneros','san jose',300,1007),
+    '> (2007,'pereia','rome',100,1004);
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '> ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'london',100,1001),
+(2002,'giovanni','rome',200,1003),
+(2003,'liu','sanjose',200,' at line 1
+mysql>  insert into customer values(2001,'hoffman','london',100,1001),
+    ->     (2002,'giovanni','rome',200,1003),
+    ->     (2003,'liu','sanjose',200,1002),
+    ->      (2004,'grass','berlin',300,1002),
+    ->      (2006,'clemens','london',100,1001),
+    ->      (2008,'cisneros','san jose',300,1007),
+    ->      (2007,'pereia','rome',100,1004);
+Query OK, 7 rows affected (0.03 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from customer;
++------+----------+----------+--------+------+
+| cnum | cname    | city     | rating | snum |
++------+----------+----------+--------+------+
+| 2001 | hoffman  | london   |    100 | 1001 |
+| 2002 | giovanni | rome     |    200 | 1003 |
+| 2003 | liu      | sanjose  |    200 | 1002 |
+| 2004 | grass    | berlin   |    300 | 1002 |
+| 2006 | clemens  | london   |    100 | 1001 |
+| 2008 | cisneros | san jose |    300 | 1007 |
+| 2007 | pereia   | rome     |    100 | 1004 |
++------+----------+----------+--------+------+
+7 rows in set (0.00 sec)
+
+mysql> select * from customers where rating=100;
+ERROR 1146 (42S02): Table 'assignment.customers' doesn't exist
+mysql> select * from customer;
++------+----------+----------+--------+------+
+| cnum | cname    | city     | rating | snum |
++------+----------+----------+--------+------+
+| 2001 | hoffman  | london   |    100 | 1001 |
+| 2002 | giovanni | rome     |    200 | 1003 |
+| 2003 | liu      | sanjose  |    200 | 1002 |
+| 2004 | grass    | berlin   |    300 | 1002 |
+| 2006 | clemens  | london   |    100 | 1001 |
+| 2008 | cisneros | san jose |    300 | 1007 |
+| 2007 | pereia   | rome     |    100 | 1004 |
++------+----------+----------+--------+------+
+7 rows in set (0.00 sec)
+
+mysql> select * from customer where rating=100;
++------+---------+--------+--------+------+
+| cnum | cname   | city   | rating | snum |
++------+---------+--------+--------+------+
+| 2001 | hoffman | london |    100 | 1001 |
+| 2006 | clemens | london |    100 | 1001 |
+| 2007 | pereia  | rome   |    100 | 1004 |
++------+---------+--------+--------+------+
+3 rows in set (0.01 sec)
+
+mysql> create table orders
+    -> (onum int,amt decimal,odate int,cnum int ,snum int);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> create table orders 1
+    -> (onum int,amt double,odate date,cnum int, snum int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1
+(onum int,amt double,odate date,cnum int, snum int)' at line 1
+mysql>
+mysql>
+mysql> create table orders 2(onum int,amt double,odate date,cnum int,snum int):
+    -> desc orders 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2(onum int,amt double,odate date,cnum int,snum int):
+desc orders 2' at line 1
+mysql> drop table orders;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table orders (onum int,amt double,odate date,cnum int,snum int);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc orders;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| onum  | int(11) | YES  |     | NULL    |       |
+| amt   | double  | YES  |     | NULL    |       |
+| odate | date    | YES  |     | NULL    |       |
+| cnum  | int(11) | YES  |     | NULL    |       |
+| snum  | int(11) | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+5 rows in set (0.03 sec)
+
+mysql> select * from information_schema.orders_constraints where tablename='orders';
+ERROR 1109 (42S02): Unknown table 'orders_constraints' in information_schema
+mysql> select * from information_schema.table_constraints where tablename='orders';
+ERROR 1054 (42S22): Unknown column 'tablename' in 'where clause'
+mysql> select * from information_schema.table_constraints where table_name='orders';
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| CONSTRAINT_CATALOG | CONSTRAINT_SCHEMA | CONSTRAINT_NAME | TABLE_SCHEMA | TABLE_NAME | CONSTRAINT_TYPE |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| NULL               | app               | PRIMARY         | app          | orders     | PRIMARY KEY     |
+| NULL               | pradb             | PRIMARY         | pradb        | orders     | PRIMARY KEY     |
+| NULL               | reexam            | PRIMARY         | reexam       | orders     | PRIMARY KEY     |
+| NULL               | reexam            | orders_ibfk_1   | reexam       | orders     | FOREIGN KEY     |
+| NULL               | reexam            | orders_ibfk_2   | reexam       | orders     | FOREIGN KEY     |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+5 rows in set (0.11 sec)
+
+mysql> select * from customer where city is null;
+Empty set (0.00 sec)
+
+mysql> insert into orders values(3001'18.69,'1996-10-3',2008,1007),
+    '> (3003,767.19,'1996-10-03',2001,1001),
+    '> (3002,1900.10,'1996-10-03',2007,1004),
+    '> (3005,5160.45,'1996-10-03',2003,1002),
+    '> (3006,1098.16,'1996-10-03',2008,1007),
+    '> (3009,1713.23,'1996-10-04',2002,1003),
+    '> (3007,75.75,'1996-10-04',2002,1003),
+    '> (3008,4723.00,'1996-10-05',2006,1001),
+    '> (3010,1309.95,'1996-10-06',2004,1002),
+    '> (3011,9891.88,'1996-10-06',2006,1001);
+    '>
+    '>
+    '> ;
+    '> j'
+    ->
+    ->
+    ->
+    -> ';
+    '>
+    '>
+    '>
+    '>
+    '> ;
+    '> ;;;;;
+    '>
+    '>
+    '>
+    '>
+    '> (3011,9891.88,'1996-10-06',2006,1001);
+    '> ;
+    '>
+    '> .............
+    '> exit
+    '> ;
+    '> select * from customer where rating=100;
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>      \
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '> (2007,'pereia','rome',100,1004);,
+    '> ,;
+    '>     (2002,'giovanni','rome',200,1003),';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''18.69,'1996-10-3',2008,1007),
+(3003,767.19,'1996-10-03',2001,1001),
+(3002,1900.' at line 1
+mysql> insert into orders values(3001'18.69,'1996-10-3',2008,1007),
+    '> (3003,767.19,'1996-10-03',2001,1001),
+    '> (3002,1900.10,'1996-10-03',2007,1004),
+    '> (3005,5160.45,'1996-10-03',2003,1002),
+    '> (3006,1098.16,'1996-10-03',2008,1007),
+    '> (3009,1713.23,'1996-10-04',2002,1003),
+    '> (3007,75.75,'1996-10-04',2002,1003),
+    '> (3008,4723.00,'1996-10-05',2006,1001),
+    '> (3010,1309.95,'1996-10-06',2004,1002),
+    '> (3011,9891.88,'1996-10-06',2006,1001);
+    '>
+    '>
+    '> (3008,4723.00,'1996-10-05',2006,1001),
+    '> ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''18.69,'1996-10-3',2008,1007),
+(3003,767.19,'1996-10-03',2001,1001),
+(3002,1900.' at line 1
+mysql> insert into orders values(3001'18.69,'1996-10-3',2008,1007),
+    '> (3003,767.19,'1996-10-03',2001,1001),
+    '> (3002,1900.10,'1996-10-03',2007,1004),
+    '> (3005,5160.45,'1996-10-03',2003,1002),
+    '> (3006,1098.16,'1996-10-03',2008,1007),
+    '> (3009,1713.23,'1996-10-04',2002,1003),
+    '> (3007,75.75,'1996-10-04',2002,1003),
+    '> (3008,4723.00,'1996-10-05',2006,1001),
+    '> (3010,1309.95,'1996-10-06',2004,1002),
+    '> (3011,9891.88,'1996-10-06',2006,1001);
+    '>
+    '>
+    '> ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''18.69,'1996-10-3',2008,1007),
+(3003,767.19,'1996-10-03',2001,1001),
+(3002,1900.' at line 1
+mysql> insert into orders values(3001,18.69,'1996-10-3',2008,1007),(3003,767.19,'1996-10-03',2001,1001),(3002,1900.10,'1996-10-03',2007,1004),(3005,5160.45,'1996-10-03',2003,1002),(3006,1098.16,'1996-10-03',2008,1007),(3009,1713.23,'1996-10-04',2002,1003),(3007,75.75,'1996-10-04',2002,1003),(3008,4723.00,'1996-10-05',2006,1001),(3010,1309.95,'1996-10-06',2004,1002),(3011,9891.88,'1996-10-06',2006,1001);
+Query OK, 10 rows affected (0.11 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql>
+mysql> select cname ,sname
+    -> from customers c inner join salespeople s
+    -> on c.snum=s.snum;
+ERROR 1146 (42S02): Table 'assignment.customers' doesn't exist
+mysql> select cname ,sname
+    -> insert into orders values(3001,18.69,'1996-10-3',2008,1007),(3003,767.19,'1996-10-03',2001,1001),(3002,1900.10,'1996-10-03',2007,1004),(3005,5160.45,'1996-10-03',2003,1002),(3006,1098.16,'1996-10-03',2008,1007),(3009,1713.23,'1996-10-04',2002,1003),(3007,75.75,'1996-10-04',2002,1003),(3008,4723.00,'1996-10-05',2006,1001),(3010,1309.95,'1996-10-06',2004,1002),(3011,9891.88,'1996-10-06',2006,1001);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'insert into orders values(3001,18.69,'1996-10-3',2008,1007),(3003,767.19,'1996-1' at line 2
+mysql> select cname ,sname
+    -> from customer c inner join salespeople s
+    -> on c.snum=s.snum;
++----------+---------+
+| cname    | sname   |
++----------+---------+
+| hoffman  | peel    |
+| clemens  | peel    |
+| liu      | serres  |
+| grass    | serres  |
+| giovanni | axelrod |
+| pereia   | motika  |
+| cisneros | rifkin  |
++----------+---------+
+7 rows in set (0.03 sec)
+
+mysql> select sname,max(amt)from salesperson inner join orders on salesperson.snum=orders.snum;
+ERROR 1146 (42S02): Table 'assignment.salesperson' doesn't exist
+mysql> select sname,max(amt)from salespeople inner join orders on salesperson.snum=orders.snum;
+ERROR 1054 (42S22): Unknown column 'salesperson.snum' in 'on clause'
+mysql> select sname,max(amt)from salespeople inner join orders on salespeople.snum=orders.snum;
++-------+----------+
+| sname | max(amt) |
++-------+----------+
+| peel  |  9891.88 |
++-------+----------+
+1 row in set (0.00 sec)
+
+mysql> select cnum from orders order by cnum desc;
++------+
+| cnum |
++------+
+| 2008 |
+| 2008 |
+| 2007 |
+| 2006 |
+| 2006 |
+| 2004 |
+| 2003 |
+| 2002 |
+| 2002 |
+| 2001 |
++------+
+10 rows in set (0.00 sec)
+
+mysql> select distinct (cnum) from orders order by cnum desc,
+    -> select distinct (cnum) from orders order by cnum desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select distinct (cnum) from orders order by cnum desc' at line 2
+mysql> select sname,odate from salespeople as s inner join orders on s.snum=orders.snum;
++---------+------------+
+| sname   | odate      |
++---------+------------+
+| peel    | 1996-10-03 |
+| peel    | 1996-10-05 |
+| peel    | 1996-10-06 |
+| serres  | 1996-10-03 |
+| serres  | 1996-10-06 |
+| axelrod | 1996-10-04 |
+| axelrod | 1996-10-04 |
+| motika  | 1996-10-03 |
+| rifkin  | 1996-10-03 |
+| rifkin  | 1996-10-03 |
++---------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select sname,odate from salespeople as s inner join orders on s.snum=orders.snum order by desc limit(0,1);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc limit(0,1)' at line 1
+mysql> select sname,odate from salespeople as s inner join orders on s.snum=orders.snum order by desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc' at line 1
+mysql> select sname,odate from salespeople as s inner join orders on s.snum=orders.snum where odate ='10-06-96';
+Empty set, 2 warnings (0.02 sec)
+
+mysql> update from orders set odate ='10-03-96' where onum=3001;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from orders set odate ='10-03-96' where onum=3001' at line 1
+mysql> update  orders set odate ='10-03-96' where onum=3001;
+ERROR 1292 (22007): Incorrect date value: '10-03-96' for column 'odate' at row 1
+mysql> update  orders set odate ='10-03-96' ;
+ERROR 1292 (22007): Incorrect date value: '10-03-96' for column 'odate' at row 1
+mysql> update orders set odate='10-03-96' where onum=3001;
+ERROR 1292 (22007): Incorrect date value: '10-03-96' for column 'odate' at row 1
+mysql> update orders set odate='96-03-10' where onum=3001;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set odate='96-03-10' where onum=3003;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set odate='96-03-10' where onum=3002;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set odate='96-03-10' where onum=3005;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set odate='96-03-10' where onum=3006;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set odate='96-04-10' where onum=3009;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set odate='96-04-10' where onum=3007;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set odate='96-05-10' where onum=3008;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set odate='96-06-10' where onum=3010;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set odate='96-06-10' where onum=3011;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from orders;
++------+---------+------------+------+------+
+| onum | amt     | odate      | cnum | snum |
++------+---------+------------+------+------+
+| 3001 |   18.69 | 1996-03-10 | 2008 | 1007 |
+| 3003 |  767.19 | 1996-03-10 | 2001 | 1001 |
+| 3002 |  1900.1 | 1996-03-10 | 2007 | 1004 |
+| 3005 | 5160.45 | 1996-03-10 | 2003 | 1002 |
+| 3006 | 1098.16 | 1996-03-10 | 2008 | 1007 |
+| 3009 | 1713.23 | 1996-04-10 | 2002 | 1003 |
+| 3007 |   75.75 | 1996-04-10 | 2002 | 1003 |
+| 3008 |    4723 | 1996-05-10 | 2006 | 1001 |
+| 3010 | 1309.95 | 1996-06-10 | 2004 | 1002 |
+| 3011 | 9891.88 | 1996-06-10 | 2006 | 1001 |
++------+---------+------------+------+------+
+10 rows in set (0.00 sec)
+
+mysql>Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.1.38-community MySQL Community Server (GPL)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| abc                |
+| adventureworks     |
+| app                |
+| bookstore          |
+| cspro              |
+| employee           |
+| exam               |
+| fleetdb            |
+| grocerystore       |
+| housie             |
+| javadb             |
+| joins              |
+| karamjeet          |
+| kasturi            |
+| log                |
+| mydata             |
+| mydatabase         |
+| mydb               |
+| mysql              |
+| mywebdb            |
+| pmdd               |
+| pradb              |
+| productcategories  |
+| reexam             |
+| restaurant         |
+| sponsership        |
+| suraj              |
+| test               |
+| vidyanidhi         |
+| vita_db17          |
+| workheet           |
+| worksheet          |
++--------------------+
+33 rows in set (0.39 sec)
+
+mysql> create database assignment;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> create table salespeople(snum int primary key auto_increment,
+    ->
+    -> );
+ERROR 1046 (3D000): No database selected
+mysql> create table salespeople(snum int primary key,
+    -> sname varchar(10),
+    -> city varchar(10),
+    -> comm decimal
+    -> );
+ERROR 1046 (3D000): No database selected
+mysql> use assignment;
+Database changed
+mysql> create table salespeople(snum int primary key,
+    -> sname varchar(10),
+    -> city varchar(10),
+    -> comm decimal
+    -> );
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> desc salespeople;
++-------+---------------+------+-----+---------+-------+
+| Field | Type          | Null | Key | Default | Extra |
++-------+---------------+------+-----+---------+-------+
+| snum  | int(11)       | NO   | PRI | NULL    |       |
+| sname | varchar(10)   | YES  |     | NULL    |       |
+| city  | varchar(10)   | YES  |     | NULL    |       |
+| comm  | decimal(10,0) | YES  |     | NULL    |       |
++-------+---------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into salespeople(snum,sname,city,comm)values(1001,'peel','london',0.12),(1002,'serres','san jose',0.13),(1004,'motika','london',0.11),(1007,'rifkin','barcelona',0.15),(1003,'axelrod','newyork',0.10),(1005,'fran','london',0.26);
+Query OK, 6 rows affected, 6 warnings (0.03 sec)
+Records: 6  Duplicates: 0  Warnings: 6
+
+mysql> select * from salespeople;
++------+---------+-----------+------+
+| snum | sname   | city      | comm |
++------+---------+-----------+------+
+| 1001 | peel    | london    |    0 |
+| 1002 | serres  | san jose  |    0 |
+| 1003 | axelrod | newyork   |    0 |
+| 1004 | motika  | london    |    0 |
+| 1005 | fran    | london    |    0 |
+| 1007 | rifkin  | barcelona |    0 |
++------+---------+-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> drop table salespeople;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table salespeople(snum int primary key,
+    -> sname varchar(10),
+    -> city varchar(10),
+    -> comm decimal(8,2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 4
+mysql> create table salespeople(snum int primary key,
+    -> sname varchar(20),
+    -> city varchar(20),
+    -> comm decimal(2,2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 4
+mysql> create table salespeople(snum int primary key,
+    ->     sname varchar(20),
+    ->      city varchar(20),
+    ->     comm decimal(2,2)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql>  insert into salespeople(snum,sname,city,comm)values(1001,'peel','london',0.12),(1002,'serres','san jose',0.13),(1004,'motika','london',0.11),(1007,'rifkin','barcelona',0.15),(1003,'axelrod','newyork',0.10),(1005,'fran','london',0.26);
+Query OK, 6 rows affected (0.03 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from salespeople;
++------+---------+-----------+------+
+| snum | sname   | city      | comm |
++------+---------+-----------+------+
+| 1001 | peel    | london    | 0.12 |
+| 1002 | serres  | san jose  | 0.13 |
+| 1003 | axelrod | newyork   | 0.10 |
+| 1004 | motika  | london    | 0.11 |
+| 1005 | fran    | london    | 0.26 |
+| 1007 | rifkin  | barcelona | 0.15 |
++------+---------+-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> select  comm from salespeople order by comm;
++------+
+| comm |
++------+
+| 0.10 |
+| 0.11 |
+| 0.12 |
+| 0.13 |
+| 0.15 |
+| 0.26 |
++------+
+6 rows in set (0.02 sec)
+
+mysql> create table customer(cnum int,
+    -> cname varchar(255),
+    -> city varchar(255),snum int
+    -> );
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> alter table customer add column rating int after city;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into customer values(2001,'hoffman,'london',100,1001),
+    '> (2002,'giovanni','rome',200,1003),
+    '> (2003,'liu','sanjose',200,1002),
+    '> (2004,'grass','berlin',300,1002),
+    '> (2006,'clemens','london',100,1001),
+    '> (2008,'cisneros','san jose',300,1007),
+    '> (2007,'pereia','rome',100,1004);
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '> ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'london',100,1001),
+(2002,'giovanni','rome',200,1003),
+(2003,'liu','sanjose',200,' at line 1
+mysql>  insert into customer values(2001,'hoffman','london',100,1001),
+    ->     (2002,'giovanni','rome',200,1003),
+    ->     (2003,'liu','sanjose',200,1002),
+    ->      (2004,'grass','berlin',300,1002),
+    ->      (2006,'clemens','london',100,1001),
+    ->      (2008,'cisneros','san jose',300,1007),
+    ->      (2007,'pereia','rome',100,1004);
+Query OK, 7 rows affected (0.03 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from customer;
++------+----------+----------+--------+------+
+| cnum | cname    | city     | rating | snum |
++------+----------+----------+--------+------+
+| 2001 | hoffman  | london   |    100 | 1001 |
+| 2002 | giovanni | rome     |    200 | 1003 |
+| 2003 | liu      | sanjose  |    200 | 1002 |
+| 2004 | grass    | berlin   |    300 | 1002 |
+| 2006 | clemens  | london   |    100 | 1001 |
+| 2008 | cisneros | san jose |    300 | 1007 |
+| 2007 | pereia   | rome     |    100 | 1004 |
++------+----------+----------+--------+------+
+7 rows in set (0.00 sec)
+
+mysql> select * from customers where rating=100;
+ERROR 1146 (42S02): Table 'assignment.customers' doesn't exist
+mysql> select * from customer;
++------+----------+----------+--------+------+
+| cnum | cname    | city     | rating | snum |
++------+----------+----------+--------+------+
+| 2001 | hoffman  | london   |    100 | 1001 |
+| 2002 | giovanni | rome     |    200 | 1003 |
+| 2003 | liu      | sanjose  |    200 | 1002 |
+| 2004 | grass    | berlin   |    300 | 1002 |
+| 2006 | clemens  | london   |    100 | 1001 |
+| 2008 | cisneros | san jose |    300 | 1007 |
+| 2007 | pereia   | rome     |    100 | 1004 |
++------+----------+----------+--------+------+
+7 rows in set (0.00 sec)
+
+mysql> select * from customer where rating=100;
++------+---------+--------+--------+------+
+| cnum | cname   | city   | rating | snum |
++------+---------+--------+--------+------+
+| 2001 | hoffman | london |    100 | 1001 |
+| 2006 | clemens | london |    100 | 1001 |
+| 2007 | pereia  | rome   |    100 | 1004 |
++------+---------+--------+--------+------+
+3 rows in set (0.01 sec)
+
+mysql> create table orders
+    -> (onum int,amt decimal,odate int,cnum int ,snum int);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> create table orders 1
+    -> (onum int,amt double,odate date,cnum int, snum int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1
+(onum int,amt double,odate date,cnum int, snum int)' at line 1
+mysql>
+mysql>
+mysql> create table orders 2(onum int,amt double,odate date,cnum int,snum int):
+    -> desc orders 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2(onum int,amt double,odate date,cnum int,snum int):
+desc orders 2' at line 1
+mysql> drop table orders;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table orders (onum int,amt double,odate date,cnum int,snum int);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc orders;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| onum  | int(11) | YES  |     | NULL    |       |
+| amt   | double  | YES  |     | NULL    |       |
+| odate | date    | YES  |     | NULL    |       |
+| cnum  | int(11) | YES  |     | NULL    |       |
+| snum  | int(11) | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+5 rows in set (0.03 sec)
+
+mysql> select * from information_schema.orders_constraints where tablename='orders';
+ERROR 1109 (42S02): Unknown table 'orders_constraints' in information_schema
+mysql> select * from information_schema.table_constraints where tablename='orders';
+ERROR 1054 (42S22): Unknown column 'tablename' in 'where clause'
+mysql> select * from information_schema.table_constraints where table_name='orders';
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| CONSTRAINT_CATALOG | CONSTRAINT_SCHEMA | CONSTRAINT_NAME | TABLE_SCHEMA | TABLE_NAME | CONSTRAINT_TYPE |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+| NULL               | app               | PRIMARY         | app          | orders     | PRIMARY KEY     |
+| NULL               | pradb             | PRIMARY         | pradb        | orders     | PRIMARY KEY     |
+| NULL               | reexam            | PRIMARY         | reexam       | orders     | PRIMARY KEY     |
+| NULL               | reexam            | orders_ibfk_1   | reexam       | orders     | FOREIGN KEY     |
+| NULL               | reexam            | orders_ibfk_2   | reexam       | orders     | FOREIGN KEY     |
++--------------------+-------------------+-----------------+--------------+------------+-----------------+
+5 rows in set (0.11 sec)
+
+mysql> select * from customer where city is null;
+Empty set (0.00 sec)
+
+mysql> insert into orders values(3001'18.69,'1996-10-3',2008,1007),
+    '> (3003,767.19,'1996-10-03',2001,1001),
+    '> (3002,1900.10,'1996-10-03',2007,1004),
+    '> (3005,5160.45,'1996-10-03',2003,1002),
+    '> (3006,1098.16,'1996-10-03',2008,1007),
+    '> (3009,1713.23,'1996-10-04',2002,1003),
+    '> (3007,75.75,'1996-10-04',2002,1003),
+    '> (3008,4723.00,'1996-10-05',2006,1001),
+    '> (3010,1309.95,'1996-10-06',2004,1002),
+    '> (3011,9891.88,'1996-10-06',2006,1001);
+    '>
+    '>
+    '> ;
+    '> j'
+    ->
+    ->
+    ->
+    -> ';
+    '>
+    '>
+    '>
+    '>
+    '> ;
+    '> ;;;;;
+    '>
+    '>
+    '>
+    '>
+    '> (3011,9891.88,'1996-10-06',2006,1001);
+    '> ;
+    '>
+    '> .............
+    '> exit
+    '> ;
+    '> select * from customer where rating=100;
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>      \
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '>
+    '> (2007,'pereia','rome',100,1004);,
+    '> ,;
+    '>     (2002,'giovanni','rome',200,1003),';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''18.69,'1996-10-3',2008,1007),
+(3003,767.19,'1996-10-03',2001,1001),
+(3002,1900.' at line 1
+mysql> insert into orders values(3001'18.69,'1996-10-3',2008,1007),
+    '> (3003,767.19,'1996-10-03',2001,1001),
+    '> (3002,1900.10,'1996-10-03',2007,1004),
+    '> (3005,5160.45,'1996-10-03',2003,1002),
+    '> (3006,1098.16,'1996-10-03',2008,1007),
+    '> (3009,1713.23,'1996-10-04',2002,1003),
+    '> (3007,75.75,'1996-10-04',2002,1003),
+    '> (3008,4723.00,'1996-10-05',2006,1001),
+    '> (3010,1309.95,'1996-10-06',2004,1002),
+    '> (3011,9891.88,'1996-10-06',2006,1001);
+    '>
+    '>
+    '> (3008,4723.00,'1996-10-05',2006,1001),
+    '> ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''18.69,'1996-10-3',2008,1007),
+(3003,767.19,'1996-10-03',2001,1001),
+(3002,1900.' at line 1
+mysql> insert into orders values(3001'18.69,'1996-10-3',2008,1007),
+    '> (3003,767.19,'1996-10-03',2001,1001),
+    '> (3002,1900.10,'1996-10-03',2007,1004),
+    '> (3005,5160.45,'1996-10-03',2003,1002),
+    '> (3006,1098.16,'1996-10-03',2008,1007),
+    '> (3009,1713.23,'1996-10-04',2002,1003),
+    '> (3007,75.75,'1996-10-04',2002,1003),
+    '> (3008,4723.00,'1996-10-05',2006,1001),
+    '> (3010,1309.95,'1996-10-06',2004,1002),
+    '> (3011,9891.88,'1996-10-06',2006,1001);
+    '>
+    '>
+    '> ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''18.69,'1996-10-3',2008,1007),
+(3003,767.19,'1996-10-03',2001,1001),
+(3002,1900.' at line 1
+mysql> insert into orders values(3001,18.69,'1996-10-3',2008,1007),(3003,767.19,'1996-10-03',2001,1001),(3002,1900.10,'1996-10-03',2007,1004),(3005,5160.45,'1996-10-03',2003,1002),(3006,1098.16,'1996-10-03',2008,1007),(3009,1713.23,'1996-10-04',2002,1003),(3007,75.75,'1996-10-04',2002,1003),(3008,4723.00,'1996-10-05',2006,1001),(3010,1309.95,'1996-10-06',2004,1002),(3011,9891.88,'1996-10-06',2006,1001);
+Query OK, 10 rows affected (0.11 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql>
+mysql> select cname ,sname
+    -> from customers c inner join salespeople s
+    -> on c.snum=s.snum;
+ERROR 1146 (42S02): Table 'assignment.customers' doesn't exist
+mysql> select cname ,sname
+    -> insert into orders values(3001,18.69,'1996-10-3',2008,1007),(3003,767.19,'1996-10-03',2001,1001),(3002,1900.10,'1996-10-03',2007,1004),(3005,5160.45,'1996-10-03',2003,1002),(3006,1098.16,'1996-10-03',2008,1007),(3009,1713.23,'1996-10-04',2002,1003),(3007,75.75,'1996-10-04',2002,1003),(3008,4723.00,'1996-10-05',2006,1001),(3010,1309.95,'1996-10-06',2004,1002),(3011,9891.88,'1996-10-06',2006,1001);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'insert into orders values(3001,18.69,'1996-10-3',2008,1007),(3003,767.19,'1996-1' at line 2
+mysql> select cname ,sname
+    -> from customer c inner join salespeople s
+    -> on c.snum=s.snum;
++----------+---------+
+| cname    | sname   |
++----------+---------+
+| hoffman  | peel    |
+| clemens  | peel    |
+| liu      | serres  |
+| grass    | serres  |
+| giovanni | axelrod |
+| pereia   | motika  |
+| cisneros | rifkin  |
++----------+---------+
+7 rows in set (0.03 sec)
+
+mysql> select sname,max(amt)from salesperson inner join orders on salesperson.snum=orders.snum;
+ERROR 1146 (42S02): Table 'assignment.salesperson' doesn't exist
+mysql> select sname,max(amt)from salespeople inner join orders on salesperson.snum=orders.snum;
+ERROR 1054 (42S22): Unknown column 'salesperson.snum' in 'on clause'
+mysql> select sname,max(amt)from salespeople inner join orders on salespeople.snum=orders.snum;
++-------+----------+
+| sname | max(amt) |
++-------+----------+
+| peel  |  9891.88 |
++-------+----------+
+1 row in set (0.00 sec)
+
+mysql> select cnum from orders order by cnum desc;
++------+
+| cnum |
++------+
+| 2008 |
+| 2008 |
+| 2007 |
+| 2006 |
+| 2006 |
+| 2004 |
+| 2003 |
+| 2002 |
+| 2002 |
+| 2001 |
++------+
+10 rows in set (0.00 sec)
+
+mysql> select distinct (cnum) from orders order by cnum desc,
+    -> select distinct (cnum) from orders order by cnum desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select distinct (cnum) from orders order by cnum desc' at line 2
+mysql> select sname,odate from salespeople as s inner join orders on s.snum=orders.snum;
++---------+------------+
+| sname   | odate      |
++---------+------------+
+| peel    | 1996-10-03 |
+| peel    | 1996-10-05 |
+| peel    | 1996-10-06 |
+| serres  | 1996-10-03 |
+| serres  | 1996-10-06 |
+| axelrod | 1996-10-04 |
+| axelrod | 1996-10-04 |
+| motika  | 1996-10-03 |
+| rifkin  | 1996-10-03 |
+| rifkin  | 1996-10-03 |
++---------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select sname,odate from salespeople as s inner join orders on s.snum=orders.snum order by desc limit(0,1);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc limit(0,1)' at line 1
+mysql> select sname,odate from salespeople as s inner join orders on s.snum=orders.snum order by desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc' at line 1
+mysql> select sname,odate from salespeople as s inner join orders on s.snum=orders.snum where odate ='10-06-96';
+Empty set, 2 warnings (0.02 sec)
+
+mysql> update from orders set odate ='10-03-96' where onum=3001;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from orders set odate ='10-03-96' where onum=3001' at line 1
+mysql> update  orders set odate ='10-03-96' where onum=3001;
+ERROR 1292 (22007): Incorrect date value: '10-03-96' for column 'odate' at row 1
+mysql> update  orders set odate ='10-03-96' ;
+ERROR 1292 (22007): Incorrect date value: '10-03-96' for column 'odate' at row 1
+mysql> update orders set odate='10-03-96' where onum=3001;
+ERROR 1292 (22007): Incorrect date value: '10-03-96' for column 'odate' at row 1
+mysql> update orders set odate='96-03-10' where onum=3001;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set odate='96-03-10' where onum=3003;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set odate='96-03-10' where onum=3002;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set odate='96-03-10' where onum=3005;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set odate='96-03-10' where onum=3006;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set odate='96-04-10' where onum=3009;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set odate='96-04-10' where onum=3007;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set odate='96-05-10' where onum=3008;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set odate='96-06-10' where onum=3010;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set odate='96-06-10' where onum=3011;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from orders;
++------+---------+------------+------+------+
+| onum | amt     | odate      | cnum | snum |
++------+---------+------------+------+------+
+| 3001 |   18.69 | 1996-03-10 | 2008 | 1007 |
+| 3003 |  767.19 | 1996-03-10 | 2001 | 1001 |
+| 3002 |  1900.1 | 1996-03-10 | 2007 | 1004 |
+| 3005 | 5160.45 | 1996-03-10 | 2003 | 1002 |
+| 3006 | 1098.16 | 1996-03-10 | 2008 | 1007 |
+| 3009 | 1713.23 | 1996-04-10 | 2002 | 1003 |
+| 3007 |   75.75 | 1996-04-10 | 2002 | 1003 |
+| 3008 |    4723 | 1996-05-10 | 2006 | 1001 |
+| 3010 | 1309.95 | 1996-06-10 | 2004 | 1002 |
+| 3011 | 9891.88 | 1996-06-10 | 2006 | 1001 |
++------+---------+------------+------+------+
+10 rows in set (0.00 sec)
+
+mysql> select sname,odate from salespeople inner join orders on s.snum=o.snum where odate ='1996-10-06';
+ERROR 1054 (42S22): Unknown column 's.snum' in 'on clause'
+mysql> select sname,odate from salespeople as s inner join orders on s.snum=o.snum where odate ='1996-10-06';
+ERROR 1054 (42S22): Unknown column 'o.snum' in 'on clause'
+mysql> select sname,odate from salespeople as s inner join orders as o on s.snum=o.snum where odate ='1996-10-06';
+Empty set (0.00 sec)
+
+mysql> select sname,odate from salespeople as s inner join orders as o on s.snum=o.snum where odate ='1996-06-10';
++--------+------------+
+| sname  | odate      |
++--------+------------+
+| peel   | 1996-06-10 |
+| serres | 1996-06-10 |
++--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select cname,sname from salespeople inner join customers on salespeople.snum=customers.snum;
+ERROR 1146 (42S02): Table 'assignment.customers' doesn't exist
+mysql> select cname,sname from salespeople inner join customer on salespeople.snum=customer.snum;
++----------+---------+
+| cname    | sname   |
++----------+---------+
+| hoffman  | peel    |
+| clemens  | peel    |
+| liu      | serres  |
+| grass    | serres  |
+| giovanni | axelrod |
+| pereia   | motika  |
+| cisneros | rifkin  |
++----------+---------+
+7 rows in set (0.00 sec)
+
+mysql>create procedure details(pcname varchar(15))
+as select * from customer where cname=pcname);
